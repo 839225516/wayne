@@ -3,7 +3,9 @@
 package client
 
 import (
+	"encoding/json"
 	"fmt"
+	v1 "k8s.io/api/core/v1"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -62,6 +64,41 @@ func (h *resourceHandler) Update(kind string, namespace string, name string, obj
 	}
 
 	kubeClient := h.getClientByGroupVersion(resource.GroupVersionResourceKind.GroupVersionResource)
+
+	// Kubernetes 中的所有资源对象，都有一个全局唯一的版本号（metadata.resourceVersion）
+	// kube-apiserver 会校验用户 update 请求提交对象中的 resourceVersion 一定要和当前 K8s 中这个对象最新的 resourceVersion 一致，
+	// 才能接受本次 update
+	// 更新services时没有带ResourceVersion 会导致更新失败
+	if kind == "services" {
+		getReq := kubeClient.Get().Resource(kind).Name(name).Namespace(namespace)
+		var result1 runtime.Unknown
+		//fmt.Println("查service")
+		//err := getReq.Do(context.TODO()).Into(&result1)
+		err := getReq.Do().Into(&result1)
+		if err != nil {
+			fmt.Println(err)
+		}
+		//fmt.Println(string(result1.Raw))
+		var serviceOld, seviceNew v1.Service
+		err = json.Unmarshal(result1.Raw, &serviceOld)
+		if err != nil {
+			fmt.Println("servcieOld json解释失败")
+		}
+
+		err = json.Unmarshal(object.Raw, &seviceNew)
+		if err != nil {
+			fmt.Println("servcieNew json解释失败")
+		}
+
+		seviceNew.ResourceVersion = serviceOld.ResourceVersion
+
+		object.Raw, err = json.Marshal(seviceNew)
+		if err != nil {
+			fmt.Println("servcieNew2json失败")
+		}
+		fmt.Println("serviceNew json:", string(object.Raw))
+	}
+
 	req := kubeClient.Put().
 		Resource(kind).
 		Name(name).
