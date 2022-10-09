@@ -287,6 +287,8 @@ func (c *OpenAPIController) RestartDeployment() {
 		Namespace:  c.GetString("namespace"),
 		Cluster:    c.GetString("cluster"),
 	}
+
+	// 验证权限和参数
 	if !c.CheckoutRoutePermission(RestartDeploymentAction) || !c.CheckDeploymentPermission(param.Deployment) || !c.CheckNamespacePermission(param.Namespace) {
 		return
 	}
@@ -298,22 +300,6 @@ func (c *OpenAPIController) RestartDeployment() {
 		c.AddErrorAndResponse(fmt.Sprintf("Invalid deployment parameter"), http.StatusBadRequest)
 		return
 	}
-	ns, err := models.NamespaceModel.GetByName(param.Namespace)
-	if err != nil {
-		c.AddErrorAndResponse(fmt.Sprintf("Failed get namespace by name(%s)", param.Namespace), http.StatusBadRequest)
-		return
-	}
-	err = json.Unmarshal([]byte(ns.MetaData), &ns.MetaDataObj)
-	if err != nil {
-		logs.Error(fmt.Sprintf("Failed to parse metadata: %s", err.Error()))
-		c.AddErrorAndResponse("", http.StatusInternalServerError)
-		return
-	}
-	deployResource, err := models.DeploymentModel.GetByName(param.Deployment)
-	if err != nil {
-		c.AddErrorAndResponse(fmt.Sprintf("Failed get deployment by name(%s)", param.Deployment), http.StatusBadRequest)
-		return
-	}
 
 	cli, err := client.Client(param.Cluster)
 	if err != nil {
@@ -322,15 +308,20 @@ func (c *OpenAPIController) RestartDeployment() {
 		return
 	}
 
-	deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, ns.KubeNamespace)
+	//deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, ns.KubeNamespace)
+	deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, param.Namespace)
 	if err != nil {
 		logs.Error("Failed to get deployment from k8s client", err.Error())
 		c.AddErrorAndResponse(fmt.Sprintf("Failed to get deployment from k8s client on %s!", param.Cluster), http.StatusInternalServerError)
 		return
 	}
+
+	// 添加Label: timestamp
 	deployObj.Spec.Template.ObjectMeta.Labels["timestamp"] = strconv.FormatInt(time.Now().Unix(), 10)
 
-	if err := updateDeployment(deployObj, param.Cluster, c.APIKey.String(), "Restart Deployment", deployResource.Id); err != nil {
+	// 更新deployment
+	_, err = resdeployment.UpdateDeployment(cli, deployObj)
+	if err != nil {
 		logs.Error("Failed to restart from k8s client", err.Error())
 		c.AddErrorAndResponse(fmt.Sprintf("Failed to restart from k8s client on %s!", param.Cluster), http.StatusInternalServerError)
 		return
