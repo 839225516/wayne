@@ -317,7 +317,7 @@ func (c *OpenAPIController) RestartDeployment() {
 
 	// 添加Label: timestamp
 	//deployObj.Spec.Template.ObjectMeta.Labels["timestamp"] = strconv.FormatInt(time.Now().Unix(), 10)
-	deployObj.Spec.Template.ObjectMeta.Labels["timestamp"] = time.Now().Format("2006_01_02_15.04.05")
+	deployObj.Spec.Template.ObjectMeta.Labels["timestamp"] = time.Now().Local().Format("2006_01_02_15.04.05")
 
 	// 更新deployment
 	_, err = resdeployment.UpdateDeployment(cli, deployObj)
