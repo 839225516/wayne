@@ -1,6 +1,7 @@
 package secret
 
 import (
+	"context"
 	kapi "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -20,19 +21,19 @@ type Secret struct {
 }
 
 func CreateOrUpdateSecret(cli *kubernetes.Clientset, secret *kapi.Secret) (*kapi.Secret, error) {
-	old, err := cli.CoreV1().Secrets(secret.Namespace).Get(secret.Name, metaV1.GetOptions{})
+	old, err := cli.CoreV1().Secrets(secret.Namespace).Get(context.TODO(), secret.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.CoreV1().Secrets(secret.Namespace).Create(secret)
+			return cli.CoreV1().Secrets(secret.Namespace).Create(context.TODO(), secret, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
 	old.Labels = secret.Labels
 	old.Data = secret.Data
 
-	return cli.CoreV1().Secrets(secret.Namespace).Update(old)
+	return cli.CoreV1().Secrets(secret.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func DeleteSecret(cli *kubernetes.Clientset, name, namespace string) error {
-	return cli.CoreV1().Secrets(namespace).Delete(name, &metaV1.DeleteOptions{})
+	return cli.CoreV1().Secrets(namespace).Delete(context.TODO(), name, metaV1.DeleteOptions{})
 }

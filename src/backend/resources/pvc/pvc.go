@@ -1,6 +1,7 @@
 package pvc
 
 import (
+	"context"
 	"errors"
 	"strings"
 
@@ -17,27 +18,27 @@ var (
 )
 
 func CreateOrUpdatePersistentVolumeClaim(cli *kubernetes.Clientset, pvc *kapi.PersistentVolumeClaim) (*kapi.PersistentVolumeClaim, error) {
-	old, err := cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Get(pvc.Name, metaV1.GetOptions{})
+	old, err := cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Get(context.TODO(), pvc.Name, metaV1.GetOptions{})
 	if err != nil {
 		if kerrors.IsNotFound(err) {
-			return cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Create(pvc)
+			return cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Create(context.TODO(), pvc, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
 	old.Labels = pvc.Labels
 	old.Annotations = pvc.Annotations
 
-	return cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Update(old)
+	return cli.CoreV1().PersistentVolumeClaims(pvc.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func GetPersistentVolumeClaimDetail(cli *kubernetes.Clientset, name, namespace string) (*kapi.PersistentVolumeClaim, error) {
 	return cli.CoreV1().
 		PersistentVolumeClaims(namespace).
-		Get(name, metaV1.GetOptions{})
+		Get(context.TODO(), name, metaV1.GetOptions{})
 }
 
 func DeletePersistentVolumeClaim(cli *kubernetes.Clientset, name, namespace string) error {
-	return cli.CoreV1().PersistentVolumeClaims(namespace).Delete(name, &metaV1.DeleteOptions{})
+	return cli.CoreV1().PersistentVolumeClaims(namespace).Delete(context.TODO(), name, metaV1.DeleteOptions{})
 }
 
 func GetRbdImageByPvc(cli *kubernetes.Clientset, name, namespace string) (string, error) {

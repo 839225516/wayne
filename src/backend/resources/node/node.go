@@ -1,6 +1,7 @@
 package node
 
 import (
+	"context"
 	"sort"
 	"strconv"
 
@@ -206,7 +207,7 @@ func toNode(knode *v1.Node) Node {
 }
 
 func UpdateNode(cli *kubernetes.Clientset, node *v1.Node) (*v1.Node, error) {
-	newNode, err := cli.CoreV1().Nodes().Update(node)
+	newNode, err := cli.CoreV1().Nodes().Update(context.TODO(), node, metaV1.UpdateOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -214,11 +215,11 @@ func UpdateNode(cli *kubernetes.Clientset, node *v1.Node) (*v1.Node, error) {
 }
 
 func DeleteNode(cli *kubernetes.Clientset, name string) error {
-	return cli.CoreV1().Nodes().Delete(name, &metaV1.DeleteOptions{})
+	return cli.CoreV1().Nodes().Delete(context.TODO(), name, metaV1.DeleteOptions{})
 }
 
 func GetNodeByName(cli *kubernetes.Clientset, name string) (*v1.Node, error) {
 	return cli.CoreV1().
 		Nodes().
-		Get(name, metaV1.GetOptions{})
+		Get(context.TODO(), name, metaV1.GetOptions{})
 }

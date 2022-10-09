@@ -3,6 +3,7 @@
 package client
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	v1 "k8s.io/api/core/v1"
@@ -51,7 +52,7 @@ func (h *resourceHandler) Create(kind string, namespace string, object *runtime.
 		req.Namespace(namespace)
 	}
 	var result runtime.Unknown
-	err = req.Do().Into(&result)
+	err = req.Do(context.TODO()).Into(&result)
 
 	return &result, err
 }
@@ -74,7 +75,7 @@ func (h *resourceHandler) Update(kind string, namespace string, name string, obj
 		var result1 runtime.Unknown
 		//fmt.Println("查service")
 		//err := getReq.Do(context.TODO()).Into(&result1)
-		err := getReq.Do().Into(&result1)
+		err := getReq.Do(context.TODO()).Into(&result1)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -109,7 +110,7 @@ func (h *resourceHandler) Update(kind string, namespace string, name string, obj
 	}
 
 	var result runtime.Unknown
-	err = req.Do().Into(&result)
+	err = req.Do(context.TODO()).Into(&result)
 
 	return &result, err
 }
@@ -130,7 +131,7 @@ func (h *resourceHandler) Delete(kind string, namespace string, name string, opt
 		req.Namespace(namespace)
 	}
 
-	return req.Do().Error()
+	return req.Do(context.TODO()).Error()
 }
 
 // Get object from cache

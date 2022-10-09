@@ -1,6 +1,7 @@
 package cronjob
 
 import (
+	"context"
 	batchv1beta1 "k8s.io/api/batch/v1beta1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -24,10 +25,10 @@ type CronJobSpec struct {
 
 func CreateOrUpdateCronjob(cli *kubernetes.Clientset, cronjob *batchv1beta1.CronJob) (*batchv1beta1.CronJob, error) {
 	cronjobClient := cli.BatchV1beta1().CronJobs(cronjob.Namespace)
-	old, err := cronjobClient.Get(cronjob.Name, metaV1.GetOptions{})
+	old, err := cronjobClient.Get(context.TODO(), cronjob.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cronjobClient.Create(cronjob)
+			return cronjobClient.Create(context.TODO(), cronjob, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
@@ -35,11 +36,11 @@ func CreateOrUpdateCronjob(cli *kubernetes.Clientset, cronjob *batchv1beta1.Cron
 	oldTemplateLabels := old.Spec.JobTemplate.Spec.Template.Labels
 	old.Spec = cronjob.Spec
 	old.Spec.JobTemplate.Spec.Template.Labels = maps.MergeLabels(oldTemplateLabels, cronjob.Spec.JobTemplate.Spec.Template.Labels)
-	return cronjobClient.Update(old)
+	return cronjobClient.Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func GetCronjobDetail(cli *kubernetes.Clientset, name, namespace string) (*Cronjob, error) {
-	cronjob, err := cli.BatchV1beta1().CronJobs(namespace).Get(name, metaV1.GetOptions{})
+	cronjob, err := cli.BatchV1beta1().CronJobs(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +55,7 @@ func GetCronjobDetail(cli *kubernetes.Clientset, name, namespace string) (*Cronj
 }
 
 func SuspendCronjob(cli *kubernetes.Clientset, name, namespace string) error {
-	cronjob, err := cli.BatchV1beta1().CronJobs(namespace).Get(name, metaV1.GetOptions{})
+	cronjob, err := cli.BatchV1beta1().CronJobs(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return err
 	}
@@ -62,7 +63,7 @@ func SuspendCronjob(cli *kubernetes.Clientset, name, namespace string) error {
 	suspend := true
 
 	cronjob.Spec.Suspend = &suspend
-	_, err = cli.BatchV1beta1().CronJobs(namespace).Update(cronjob)
+	_, err = cli.BatchV1beta1().CronJobs(namespace).Update(context.TODO(), cronjob, metaV1.UpdateOptions{})
 	if err != nil {
 		return err
 	}
@@ -73,5 +74,5 @@ func DeleteCronjob(cli *kubernetes.Clientset, name, namespace string) error {
 	deletionPropagation := metaV1.DeletePropagationBackground
 	return cli.BatchV1beta1().
 		CronJobs(namespace).
-		Delete(name, &metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
+		Delete(context.TODO(), name, metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
 }

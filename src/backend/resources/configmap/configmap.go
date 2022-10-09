@@ -1,6 +1,7 @@
 package configmap
 
 import (
+	"context"
 	kapi "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -16,15 +17,15 @@ type ConfigMap struct {
 }
 
 func CreateOrUpdateConfigMap(cli *kubernetes.Clientset, configMap *kapi.ConfigMap) (*kapi.ConfigMap, error) {
-	old, err := cli.CoreV1().ConfigMaps(configMap.Namespace).Get(configMap.Name, metaV1.GetOptions{})
+	old, err := cli.CoreV1().ConfigMaps(configMap.Namespace).Get(context.TODO(), configMap.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.CoreV1().ConfigMaps(configMap.Namespace).Create(configMap)
+			return cli.CoreV1().ConfigMaps(configMap.Namespace).Create(context.TODO(), configMap, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
 	old.Labels = configMap.Labels
 	old.Data = configMap.Data
 
-	return cli.CoreV1().ConfigMaps(configMap.Namespace).Update(old)
+	return cli.CoreV1().ConfigMaps(configMap.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }

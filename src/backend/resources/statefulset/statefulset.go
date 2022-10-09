@@ -1,6 +1,7 @@
 package statefulset
 
 import (
+	"context"
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -39,10 +40,10 @@ func GetStatefulsetResource(cli client.ResourceHandler, statefulSet *appsv1.Stat
 }
 
 func CreateOrUpdateStatefulset(cli *kubernetes.Clientset, statefulSet *appsv1.StatefulSet) (*appsv1.StatefulSet, error) {
-	old, err := cli.AppsV1().StatefulSets(statefulSet.Namespace).Get(statefulSet.Name, metaV1.GetOptions{})
+	old, err := cli.AppsV1().StatefulSets(statefulSet.Namespace).Get(context.TODO(), statefulSet.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.AppsV1().StatefulSets(statefulSet.Namespace).Create(statefulSet)
+			return cli.AppsV1().StatefulSets(statefulSet.Namespace).Create(context.TODO(), statefulSet, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
@@ -51,11 +52,11 @@ func CreateOrUpdateStatefulset(cli *kubernetes.Clientset, statefulSet *appsv1.St
 	old.Spec = statefulSet.Spec
 	old.Spec.Template.Labels = maps.MergeLabels(oldTemplateLabels, statefulSet.Spec.Template.Labels)
 
-	return cli.AppsV1().StatefulSets(statefulSet.Namespace).Update(old)
+	return cli.AppsV1().StatefulSets(statefulSet.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func GetStatefulsetDetail(cli *kubernetes.Clientset, indexer *client.CacheFactory, name, namespace string) (*Statefulset, error) {
-	statefulSet, err := cli.AppsV1().StatefulSets(namespace).Get(name, metaV1.GetOptions{})
+	statefulSet, err := cli.AppsV1().StatefulSets(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}

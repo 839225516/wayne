@@ -1,6 +1,7 @@
 package crd
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 
@@ -20,7 +21,7 @@ func GetCustomCRD(cli *kubernetes.Clientset, group, version, kind, namespace, na
 			namespace,
 			kind,
 			name))
-	raw, err := req.Do().Raw()
+	raw, err := req.Do(context.TODO()).Raw()
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +40,7 @@ func CreatCustomCRD(cli *kubernetes.Clientset, group, version, kind, namespace s
 			version,
 			namespace,
 			kind)).Body(body)
-	raw, err := req.Do().Raw()
+	raw, err := req.Do(context.TODO()).Raw()
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +62,7 @@ func UpdateCustomCRD(cli *kubernetes.Clientset, group, version, kind, namespace,
 			name)).
 		Body([]byte(object.Raw)).
 		SetHeader("Content-Type", "application/json")
-	raw, err := req.Do().Raw()
+	raw, err := req.Do(context.TODO()).Raw()
 	if err != nil {
 		logs.Error(req.URL().String(), err)
 		return nil, err
@@ -82,7 +83,7 @@ func DeleteCustomCRD(cli *kubernetes.Clientset, group, version, kind, namespace,
 			namespace,
 			kind,
 			name))
-	return req.Do().Error()
+	return req.Do(context.TODO()).Error()
 }
 
 func GetCustomCRDPage(cli *kubernetes.Clientset, group, version, kind, namespace string, q *common.QueryParam) (*common.Page, error) {
@@ -92,7 +93,7 @@ func GetCustomCRDPage(cli *kubernetes.Clientset, group, version, kind, namespace
 			version,
 			namespace,
 			kind))
-	result, err := req.Do().Raw()
+	result, err := req.Do(context.TODO()).Raw()
 	if err != nil {
 		return nil, err
 	}

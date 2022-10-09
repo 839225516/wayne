@@ -1,6 +1,7 @@
 package deployment
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"sort"
@@ -60,10 +61,10 @@ func GetDeploymentResource(cli client.ResourceHandler, deployment *appsv1.Deploy
 
 func CreateOrUpdateDeployment(cli *kubernetes.Clientset, deployment *appsv1.Deployment) (*appsv1.Deployment, error) {
 	//old, err := cli.AppsV1beta1().Deployments(deployment.Namespace).Get(deployment.Name, metaV1.GetOptions{})
-	old, err := cli.AppsV1().Deployments(deployment.Namespace).Get(deployment.Name, metaV1.GetOptions{})
+	old, err := cli.AppsV1().Deployments(deployment.Namespace).Get(context.TODO(), deployment.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.AppsV1().Deployments(deployment.Namespace).Create(deployment)
+			return cli.AppsV1().Deployments(deployment.Namespace).Create(context.TODO(), deployment, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
@@ -76,11 +77,11 @@ func CreateOrUpdateDeployment(cli *kubernetes.Clientset, deployment *appsv1.Depl
 	old.Annotations = deployment.Annotations
 	old.Spec = deployment.Spec
 
-	return cli.AppsV1().Deployments(deployment.Namespace).Update(old)
+	return cli.AppsV1().Deployments(deployment.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func UpdateDeployment(cli *kubernetes.Clientset, deployment *appsv1.Deployment) (*appsv1.Deployment, error) {
-	old, err := cli.AppsV1().Deployments(deployment.Namespace).Get(deployment.Name, metaV1.GetOptions{})
+	old, err := cli.AppsV1().Deployments(deployment.Namespace).Get(context.TODO(), deployment.Name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +91,7 @@ func UpdateDeployment(cli *kubernetes.Clientset, deployment *appsv1.Deployment) 
 		return nil, err
 	}
 
-	return cli.AppsV1().Deployments(deployment.Namespace).Update(deployment)
+	return cli.AppsV1().Deployments(deployment.Namespace).Update(context.TODO(), deployment, metaV1.UpdateOptions{})
 }
 
 // check Deployment .Spec.Selector.MatchLabels, prevent orphan ReplicaSet
@@ -114,11 +115,11 @@ func checkDeploymentLabelSelector(new *appsv1.Deployment, old *appsv1.Deployment
 }
 
 func GetDeployment(cli *kubernetes.Clientset, name, namespace string) (*appsv1.Deployment, error) {
-	return cli.AppsV1().Deployments(namespace).Get(name, metaV1.GetOptions{})
+	return cli.AppsV1().Deployments(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 }
 
 func GetDeploymentDetail(cli *kubernetes.Clientset, indexer *client.CacheFactory, name, namespace string) (*Deployment, error) {
-	deployment, err := cli.AppsV1().Deployments(namespace).Get(name, metaV1.GetOptions{})
+	deployment, err := cli.AppsV1().Deployments(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -162,16 +163,16 @@ func DeleteDeployment(cli *kubernetes.Clientset, name, namespace string) error {
 	deletionPropagation := metaV1.DeletePropagationBackground
 	return cli.AppsV1().
 		Deployments(namespace).
-		Delete(name, &metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
+		Delete(context.TODO(), name, metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
 }
 
 func UpdateScale(cli *kubernetes.Clientset, deploymentname string, namespace string, newreplica int32) error {
 	deployments := cli.AppsV1beta1().Deployments(namespace)
-	deployment, err := deployments.Get(deploymentname, metaV1.GetOptions{})
+	deployment, err := deployments.Get(context.TODO(), deploymentname, metaV1.GetOptions{})
 	if err != nil {
 		return err
 	}
 	deployment.Spec.Replicas = &newreplica
-	_, err = deployments.Update(deployment)
+	_, err = deployments.Update(context.TODO(), deployment, metaV1.UpdateOptions{})
 	return err
 }

@@ -1,6 +1,7 @@
 package crd
 
 import (
+	"context"
 	"encoding/json"
 
 	apiextensions "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
@@ -63,7 +64,7 @@ func (c *KubeCRDController) Get() {
 	name := c.Ctx.Input.Param(":name")
 	cli := c.ApiextensionsClient(cluster)
 
-	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Get(name, metaV1.GetOptions{})
+	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		logs.Error("get CRD by cluster (%s) name(%s) error.%v", cluster, name, err)
 		c.HandleError(err)
@@ -83,7 +84,7 @@ func (c *KubeCRDController) Create() {
 	}
 	cluster := c.Ctx.Input.Param(":cluster")
 	cli := c.ApiextensionsClient(cluster)
-	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Create(&tpl)
+	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Create(context.TODO(), &tpl, metaV1.CreateOptions{})
 	if err != nil {
 		logs.Error("create CRD (%v) by cluster (%s) error.%v", tpl, cluster, err)
 		c.HandleError(err)
@@ -108,7 +109,7 @@ func (c *KubeCRDController) Update() {
 	}
 
 	cli := c.ApiextensionsClient(cluster)
-	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Update(&tpl)
+	result, err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Update(context.TODO(), &tpl, metaV1.UpdateOptions{})
 	if err != nil {
 		logs.Error("update CRD (%v) by cluster (%s) error.%v", tpl, cluster, err)
 		c.HandleError(err)
@@ -125,7 +126,7 @@ func (c *KubeCRDController) Delete() {
 	cluster := c.Ctx.Input.Param(":cluster")
 	name := c.Ctx.Input.Param(":name")
 	cli := c.ApiextensionsClient(cluster)
-	err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Delete(name, &metaV1.DeleteOptions{})
+	err := cli.ApiextensionsV1beta1().CustomResourceDefinitions().Delete(context.TODO(), name, metaV1.DeleteOptions{})
 	if err != nil {
 		logs.Error("delete CRD (%s) by cluster (%s) error.%v", name, cluster, err)
 		c.HandleError(err)

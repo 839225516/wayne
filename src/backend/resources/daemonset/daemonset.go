@@ -1,6 +1,7 @@
 package daemonset
 
 import (
+	"context"
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -19,10 +20,10 @@ type DaemonSet struct {
 }
 
 func CreateOrUpdateDaemonSet(cli *kubernetes.Clientset, daemonSet *appsv1.DaemonSet) (*appsv1.DaemonSet, error) {
-	old, err := cli.AppsV1().DaemonSets(daemonSet.Namespace).Get(daemonSet.Name, metaV1.GetOptions{})
+	old, err := cli.AppsV1().DaemonSets(daemonSet.Namespace).Get(context.TODO(), daemonSet.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.AppsV1().DaemonSets(daemonSet.Namespace).Create(daemonSet)
+			return cli.AppsV1().DaemonSets(daemonSet.Namespace).Create(context.TODO(), daemonSet, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}
@@ -31,11 +32,11 @@ func CreateOrUpdateDaemonSet(cli *kubernetes.Clientset, daemonSet *appsv1.Daemon
 	old.Spec = daemonSet.Spec
 	old.Spec.Template.Labels = maps.MergeLabels(oldTemplateLabels, daemonSet.Spec.Template.Labels)
 
-	return cli.AppsV1().DaemonSets(daemonSet.Namespace).Update(old)
+	return cli.AppsV1().DaemonSets(daemonSet.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 }
 
 func GetDaemonSetDetail(cli *kubernetes.Clientset, indexer *client.CacheFactory, name, namespace string) (*DaemonSet, error) {
-	daemonSet, err := cli.AppsV1().DaemonSets(namespace).Get(name, metaV1.GetOptions{})
+	daemonSet, err := cli.AppsV1().DaemonSets(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -67,5 +68,5 @@ func DeleteDaemonSet(cli *kubernetes.Clientset, name, namespace string) error {
 	deletionPropagation := metaV1.DeletePropagationBackground
 	return cli.AppsV1().
 		DaemonSets(namespace).
-		Delete(name, &metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
+		Delete(context.TODO(), name, metaV1.DeleteOptions{PropagationPolicy: &deletionPropagation})
 }

@@ -1,6 +1,7 @@
 package namespace
 
 import (
+	"context"
 	"github.com/Qihoo360/wayne/src/backend/client"
 	"github.com/Qihoo360/wayne/src/backend/client/api"
 
@@ -14,10 +15,10 @@ import (
 )
 
 func CreateNotExitNamespace(cli *kubernetes.Clientset, ns *v1.Namespace) (*v1.Namespace, error) {
-	_, err := cli.CoreV1().Namespaces().Get(ns.Name, metaV1.GetOptions{})
+	_, err := cli.CoreV1().Namespaces().Get(context.TODO(), ns.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return cli.CoreV1().Namespaces().Create(ns)
+			return cli.CoreV1().Namespaces().Create(context.TODO(), ns, metaV1.CreateOptions{})
 		}
 		return nil, err
 	}

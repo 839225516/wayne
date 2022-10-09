@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"k8s.io/api/core/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -49,7 +50,7 @@ type ServiceDetail struct {
 
 func GetServiceDetail(cli *kubernetes.Clientset, indexer *client.CacheFactory, namespace, name string) (*ServiceDetail, error) {
 
-	serviceDate, err := cli.CoreV1().Services(namespace).Get(name, metaV1.GetOptions{})
+	serviceDate, err := cli.CoreV1().Services(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}

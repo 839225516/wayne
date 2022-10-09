@@ -1,19 +1,20 @@
 package ingress
 
 import (
+	"context"
 	"k8s.io/api/extensions/v1beta1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
-	
+
 	"github.com/Qihoo360/wayne/src/backend/util/logs"
 )
 
 func CreateOrUpdateIngress(c *kubernetes.Clientset, ingress *v1beta1.Ingress) (*Ingress, error) {
-	old, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Get(ingress.Name, metaV1.GetOptions{})
+	old, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Get(context.TODO(), ingress.Name, metaV1.GetOptions{})
 	if err != nil {
 		if errors.IsNotFound(err) {
-			kubeIngress, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Create(ingress)
+			kubeIngress, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Create(context.TODO(), ingress, metaV1.CreateOptions{})
 			if err != nil {
 				return nil, err
 			}
@@ -28,8 +29,8 @@ func CreateOrUpdateIngress(c *kubernetes.Clientset, ingress *v1beta1.Ingress) (*
 	old.Annotations = ingress.Annotations
 	old.Spec = ingress.Spec
 	logs.Info("new ingress", old)
-	
-	kubeIngress, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Update(old)
+
+	kubeIngress, err := c.ExtensionsV1beta1().Ingresses(ingress.Namespace).Update(context.TODO(), old, metaV1.UpdateOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +38,7 @@ func CreateOrUpdateIngress(c *kubernetes.Clientset, ingress *v1beta1.Ingress) (*
 }
 
 func GetIngressDetail(c *kubernetes.Clientset, name, namespace string) (*Ingress, error) {
-	ingress, err := c.ExtensionsV1beta1().Ingresses(namespace).Get(name, metaV1.GetOptions{})
+	ingress, err := c.ExtensionsV1beta1().Ingresses(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +46,7 @@ func GetIngressDetail(c *kubernetes.Clientset, name, namespace string) (*Ingress
 }
 
 func GetIngress(c *kubernetes.Clientset, name, namespace string) (ingress *v1beta1.Ingress, err error) {
-	ingress, err = c.ExtensionsV1beta1().Ingresses(namespace).Get(name, metaV1.GetOptions{})
+	ingress, err = c.ExtensionsV1beta1().Ingresses(namespace).Get(context.TODO(), name, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -53,11 +54,11 @@ func GetIngress(c *kubernetes.Clientset, name, namespace string) (ingress *v1bet
 }
 
 func DeleteIngress(c *kubernetes.Clientset, name, namespace string) error {
-	return c.ExtensionsV1beta1().Ingresses(namespace).Delete(name, &metaV1.DeleteOptions{})
+	return c.ExtensionsV1beta1().Ingresses(namespace).Delete(context.TODO(), name, metaV1.DeleteOptions{})
 }
 
 func GetIngressList(cli *kubernetes.Clientset, namespace string, opts metaV1.ListOptions) (list []*Ingress, err error) {
-	kubeIngressList, err := cli.ExtensionsV1beta1().Ingresses(namespace).List(opts)
+	kubeIngressList, err := cli.ExtensionsV1beta1().Ingresses(namespace).List(context.TODO(), opts)
 	if err != nil {
 		return nil, err
 	}
