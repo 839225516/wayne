@@ -52,6 +52,18 @@ type RestartDeploymentParam struct {
 	Cluster string `json:"cluster"`
 }
 
+// swagger:parameters RestartDeploymentParam
+type GetVersionDeploymentParam struct {
+	// in: query
+	// Required: true
+	Deployment string `json:"deployment"`
+	// Required: true
+	Namespace string `json:"namespace"`
+	// 和升级部署存在差别，不允许同时填写多个 cluster
+	// Required: true
+	Cluster string `json:"cluster"`
+}
+
 // swagger:parameters UpgradeDeploymentParam
 type UpgradeDeploymentParam struct {
 	// in: query
@@ -327,6 +339,66 @@ func (c *OpenAPIController) RestartDeployment() {
 		return
 	}
 	c.HandleResponse(nil)
+}
+
+// swagger:route GET /getversion_deployment deploy GetVersionDeploymentParam
+//
+// 用于用户调用以实现查证deployment的label[version]的值
+//
+// 该接口只能使用 app 级别的 apikey，这样做的目的主要是防止 apikey 的滥用
+//
+//     Responses:
+//       200: responseSuccess
+//       400: responseState
+//       401: responseState
+//       500: responseState
+// @router /get_version_deployment [get]
+func (c *OpenAPIController) GetVersionDeployment() {
+	param := GetVersionDeploymentParam{
+		Deployment: c.GetString("deployment"),
+		Namespace:  c.GetString("namespace"),
+		Cluster:    c.GetString("cluster"),
+	}
+
+	// 验证权限和参数
+	if !c.CheckoutRoutePermission(GetDeploymentDetailAction) || !c.CheckDeploymentPermission(param.Deployment) || !c.CheckNamespacePermission(param.Namespace) {
+		return
+	}
+	if len(param.Namespace) == 0 {
+		c.AddErrorAndResponse(fmt.Sprintf("Invalid namespace parameter"), http.StatusBadRequest)
+		return
+	}
+	if len(param.Deployment) == 0 {
+		c.AddErrorAndResponse(fmt.Sprintf("Invalid deployment parameter"), http.StatusBadRequest)
+		return
+	}
+
+	cli, err := client.Client(param.Cluster)
+	if err != nil {
+		logs.Error("Failed to connect to k8s client", err)
+		c.AddErrorAndResponse(fmt.Sprintf("Failed to connect to k8s client on %s!", param.Cluster), http.StatusInternalServerError)
+		return
+	}
+
+	//deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, ns.KubeNamespace)
+	deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, param.Namespace)
+	if err != nil {
+		logs.Error("Failed to get deployment from k8s client", err.Error())
+		c.AddErrorAndResponse(fmt.Sprintf("Failed to get deployment from k8s client on %s!", param.Cluster), http.StatusInternalServerError)
+		return
+	}
+
+	app := make(map[string]string)
+	app["name"] = param.Deployment
+
+	value, ok := deployObj.Labels["version"]
+	if ok {
+		app["version"] = value
+	} else {
+		app["version"] = ""
+	}
+
+	c.HandleResponse(app)
 }
 
 // swagger:route GET /upgrade_deployment deploy UpgradeDeploymentParam
