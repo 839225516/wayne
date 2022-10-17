@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
@@ -62,40 +63,18 @@ type LoginResult struct {
 // name when login type is oauth2 used for oauth2 type
 // @router /login/:type/?:name [get,post]
 func (c *AuthController) Login() {
-	/*	var postData LoginData
-		err := json.Unmarshal(c.Ctx.Input.RequestBody, &postData)
-		if err != nil {
-			logs.Error("get body error. %v", err)
-			c.Ctx.Output.SetStatus(http.StatusBadRequest)
-			c.Ctx.Output.Body(hack.Slice("Invalid param"))
-			return
-		}
-		authType := c.Ctx.Input.Param(":type")
-		oauth2Name := c.Ctx.Input.Param(":name")
-		next := c.Ctx.Input.Query("next")
-		if authType == "" || postData.UserName == "admin" {
-			authType = models.AuthTypeDB
-		}
-		logs.Info("auth type is", authType)
-		authenticator, ok := registry[authType]
-		if !ok {
-			logs.Warning("auth type (%s) is not supported . ", authType)
-			c.Ctx.Output.SetStatus(http.StatusBadRequest)
-			c.Ctx.Output.Body(hack.Slice(fmt.Sprintf("auth type (%s) is not supported.", authType)))
-			return
-		}
-		authModel := models.AuthModel{
-			Username: postData.UserName,
-			Password: postData.Password,
-		}*/
-
-	// 前端代码没改，这里要改回原来不安全的get方式
-	username := c.Input().Get("username")
-	password := c.Input().Get("password")
+	var postData LoginData
+	err := json.Unmarshal(c.Ctx.Input.RequestBody, &postData)
+	if err != nil {
+		logs.Error("get body error. %v", err)
+		c.Ctx.Output.SetStatus(http.StatusBadRequest)
+		c.Ctx.Output.Body(hack.Slice("Invalid param"))
+		return
+	}
 	authType := c.Ctx.Input.Param(":type")
 	oauth2Name := c.Ctx.Input.Param(":name")
 	next := c.Ctx.Input.Query("next")
-	if authType == "" || username == "admin" {
+	if authType == "" || postData.UserName == "admin" {
 		authType = models.AuthTypeDB
 	}
 	logs.Info("auth type is", authType)
@@ -107,8 +86,8 @@ func (c *AuthController) Login() {
 		return
 	}
 	authModel := models.AuthModel{
-		Username: username,
-		Password: password,
+		Username: postData.UserName,
+		Password: postData.Password,
 	}
 
 	if authType == models.AuthTypeOAuth2 {
