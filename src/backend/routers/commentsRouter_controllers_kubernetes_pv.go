@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubePersistentVolumeController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/pv:KubePersistentVolumeController"
+    const KubePersistentVolumeController = "wayne/src/backend/controllers/kubernetes/pv:KubePersistentVolumeController"
     beego.GlobalControllerRouter[KubePersistentVolumeController] = append(
         beego.GlobalControllerRouter[KubePersistentVolumeController],
         beego.ControllerComments{
@@ -50,7 +50,7 @@ func init() {
             Params: nil,
         })
 
-    const RobinPersistentVolumeController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/pv:RobinPersistentVolumeController"
+    const RobinPersistentVolumeController = "wayne/src/backend/controllers/kubernetes/pv:RobinPersistentVolumeController"
     beego.GlobalControllerRouter[RobinPersistentVolumeController] = append(
         beego.GlobalControllerRouter[RobinPersistentVolumeController],
         beego.ControllerComments{

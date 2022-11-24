@@ -5,10 +5,10 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/auth"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	selfoauth "github.com/Qihoo360/wayne/src/backend/oauth2"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/controllers/auth"
+	"wayne/src/backend/models"
+	selfoauth "wayne/src/backend/oauth2"
+	"wayne/src/backend/util/logs"
 )
 
 func init() {

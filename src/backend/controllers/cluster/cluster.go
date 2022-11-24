@@ -3,9 +3,9 @@ package cluster
 import (
 	"encoding/json"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
 )
 
 // 集群相关操作

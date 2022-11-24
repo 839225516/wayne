@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeJobController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/job:KubeJobController"
+    const KubeJobController = "wayne/src/backend/controllers/kubernetes/job:KubeJobController"
     beego.GlobalControllerRouter[KubeJobController] = append(
         beego.GlobalControllerRouter[KubeJobController],
         beego.ControllerComments{

@@ -450,7 +450,7 @@
           "x-go-name": "User"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "ContainerStatus": {
       "type": "object",
@@ -465,7 +465,7 @@
           "x-go-name": "RestartCount"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "Deployment": {
       "type": "object",
@@ -494,7 +494,7 @@
           "$ref": "#/definitions/PodInfo"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "Pod": {
       "type": "object",
@@ -539,7 +539,7 @@
           "x-go-name": "State"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "PodInfo": {
       "type": "object",
@@ -582,7 +582,7 @@
           "x-go-name": "Warnings"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "User": {
       "type": "object",
@@ -607,7 +607,7 @@
           "x-go-name": "Roles"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/models/response"
+      "x-go-package": "wayne/src/backend/models/response"
     },
     "deploymentstatus": {
       "type": "object",
@@ -633,7 +633,7 @@
         }
       },
       "x-go-name": "DeploymentStatus",
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/controllers/openapi"
+      "x-go-package": "wayne/src/backend/controllers/openapi"
     },
     "resourceInfo": {
       "type": "object",
@@ -653,7 +653,7 @@
           "x-go-name": "Users"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/controllers/openapi"
+      "x-go-package": "wayne/src/backend/controllers/openapi"
     },
     "respListInfo": {
       "type": "object",
@@ -679,7 +679,7 @@
           "x-go-name": "ResourceName"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/controllers/openapi"
+      "x-go-package": "wayne/src/backend/controllers/openapi"
     },
     "respPodInfo": {
       "type": "object",
@@ -710,7 +710,7 @@
           "x-go-name": "State"
         }
       },
-      "x-go-package": "github.com/Qihoo360/wayne/src/backend/controllers/openapi"
+      "x-go-package": "wayne/src/backend/controllers/openapi"
     }
   },
   "responses": {

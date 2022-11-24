@@ -1,7 +1,7 @@
 package deployment
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/resources/dataselector"
 )
 
 type DeploymentCell Deployment

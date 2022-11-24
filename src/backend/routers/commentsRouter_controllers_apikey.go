@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const ApiKeyController = "github.com/Qihoo360/wayne/src/backend/controllers/apikey:ApiKeyController"
+    const ApiKeyController = "wayne/src/backend/controllers/apikey:ApiKeyController"
     beego.GlobalControllerRouter[ApiKeyController] = append(
         beego.GlobalControllerRouter[ApiKeyController],
         beego.ControllerComments{

@@ -2,16 +2,16 @@ package namespace
 
 import (
 	"context"
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/client/api"
+	"wayne/src/backend/client"
+	"wayne/src/backend/client/api"
 
 	"k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
-	"github.com/Qihoo360/wayne/src/backend/util"
+	"wayne/src/backend/resources/common"
+	"wayne/src/backend/util"
 )
 
 func CreateNotExitNamespace(cli *kubernetes.Clientset, ns *v1.Namespace) (*v1.Namespace, error) {

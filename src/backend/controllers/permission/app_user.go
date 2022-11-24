@@ -6,10 +6,10 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/mitchellh/mapstructure"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
-	"github.com/Qihoo360/wayne/src/backend/workers/webhook"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
+	"wayne/src/backend/workers/webhook"
 )
 
 // 操作AppUser相关资源

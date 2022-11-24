@@ -10,7 +10,7 @@ import (
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/resources/pv"
+	"wayne/src/backend/resources/pv"
 )
 
 var (

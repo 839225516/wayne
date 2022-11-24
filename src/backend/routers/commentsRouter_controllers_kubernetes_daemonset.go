@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeDaemonSetController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/daemonset:KubeDaemonSetController"
+    const KubeDaemonSetController = "wayne/src/backend/controllers/kubernetes/daemonset:KubeDaemonSetController"
     beego.GlobalControllerRouter[KubeDaemonSetController] = append(
         beego.GlobalControllerRouter[KubeDaemonSetController],
         beego.ControllerComments{

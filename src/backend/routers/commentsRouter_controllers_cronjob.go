@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const CronjobController = "github.com/Qihoo360/wayne/src/backend/controllers/cronjob:CronjobController"
+    const CronjobController = "wayne/src/backend/controllers/cronjob:CronjobController"
     beego.GlobalControllerRouter[CronjobController] = append(
         beego.GlobalControllerRouter[CronjobController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const CronjobTplController = "github.com/Qihoo360/wayne/src/backend/controllers/cronjob:CronjobTplController"
+    const CronjobTplController = "wayne/src/backend/controllers/cronjob:CronjobTplController"
     beego.GlobalControllerRouter[CronjobTplController] = append(
         beego.GlobalControllerRouter[CronjobTplController],
         beego.ControllerComments{

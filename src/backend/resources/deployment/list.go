@@ -1,9 +1,9 @@
 package deployment
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/client"
+	"wayne/src/backend/common"
+	"wayne/src/backend/resources/dataselector"
 )
 
 func GetDeploymentPage(indexer *client.CacheFactory, namespace string, q *common.QueryParam) (*common.Page, error) {

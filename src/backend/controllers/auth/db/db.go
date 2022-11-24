@@ -2,9 +2,9 @@ package db
 
 import (
 	"fmt"
-	"github.com/Qihoo360/wayne/src/backend/controllers/auth"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/encode"
+	"wayne/src/backend/controllers/auth"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/encode"
 	"github.com/astaxie/beego/orm"
 )
 

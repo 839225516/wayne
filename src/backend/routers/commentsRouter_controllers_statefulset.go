@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const StatefulsetController = "github.com/Qihoo360/wayne/src/backend/controllers/statefulset:StatefulsetController"
+    const StatefulsetController = "wayne/src/backend/controllers/statefulset:StatefulsetController"
     beego.GlobalControllerRouter[StatefulsetController] = append(
         beego.GlobalControllerRouter[StatefulsetController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const StatefulsetTplController = "github.com/Qihoo360/wayne/src/backend/controllers/statefulset:StatefulsetTplController"
+    const StatefulsetTplController = "wayne/src/backend/controllers/statefulset:StatefulsetTplController"
     beego.GlobalControllerRouter[StatefulsetTplController] = append(
         beego.GlobalControllerRouter[StatefulsetTplController],
         beego.ControllerComments{

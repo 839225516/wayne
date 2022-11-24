@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/common"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
 )
 
 type NamespaceController struct {

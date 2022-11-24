@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const NotificationController = "github.com/Qihoo360/wayne/src/backend/controllers/notification:NotificationController"
+    const NotificationController = "wayne/src/backend/controllers/notification:NotificationController"
     beego.GlobalControllerRouter[NotificationController] = append(
         beego.GlobalControllerRouter[NotificationController],
         beego.ControllerComments{

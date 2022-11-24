@@ -3,7 +3,7 @@ package common
 import (
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
+	"wayne/src/backend/models"
 )
 
 func ServicePreDeploy(kubeService *v1.Service, cluster *models.Cluster, namespace *models.Namespace) {

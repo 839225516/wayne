@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/Qihoo360/wayne/src/backend/models"
+	. "wayne/src/backend/models"
 )
 
 type serviceModel struct{}

@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/go-sql-driver/mysql"
 
-	"github.com/Qihoo360/wayne/src/backend/common"
+	"wayne/src/backend/common"
 )
 
 const (

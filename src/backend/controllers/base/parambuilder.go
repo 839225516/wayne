@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/util/snaker"
+	"wayne/src/backend/common"
+	"wayne/src/backend/util/snaker"
 )
 
 type ParamBuilderController struct {

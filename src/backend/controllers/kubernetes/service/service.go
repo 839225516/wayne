@@ -5,13 +5,13 @@ import (
 
 	v1 "k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/controllers/common"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/resources/service"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
-	"github.com/Qihoo360/wayne/src/backend/workers/webhook"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/controllers/common"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/resources/service"
+	"wayne/src/backend/util/logs"
+	"wayne/src/backend/workers/webhook"
 )
 
 type KubeServiceController struct {

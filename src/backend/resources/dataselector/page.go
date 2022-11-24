@@ -1,7 +1,7 @@
 package dataselector
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/common"
+	"wayne/src/backend/common"
 )
 
 // GenericDataSelect takes a list of GenericDataCells and DataSelectQuery and returns selected data as instructed by dsQuery.

@@ -6,8 +6,8 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 
-	"github.com/Qihoo360/wayne/src/backend/util/encode"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/util/encode"
+	"wayne/src/backend/util/logs"
 )
 
 type UserType int

@@ -7,7 +7,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/dgrijalva/jwt-go"
 
-	"github.com/Qihoo360/wayne/src/backend/apikey"
+	"wayne/src/backend/apikey"
 )
 
 func InitRsaKey() {

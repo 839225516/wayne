@@ -1,7 +1,7 @@
 package health
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/models"
+	"wayne/src/backend/models"
 )
 
 type DatabaseCheck struct {

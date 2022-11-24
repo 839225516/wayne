@@ -3,15 +3,16 @@ package ingress
 import (
 	"encoding/json"
 
-	kapiv1beta1 "k8s.io/api/extensions/v1beta1"
+	//kapiv1beta1 "k8s.io/api/extensions/v1beta1"
+	kapiv1 "k8s.io/api/networking/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/controllers/common"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/resources/ingress"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
-	"github.com/Qihoo360/wayne/src/backend/workers/webhook"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/controllers/common"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/resources/ingress"
+	"wayne/src/backend/util/logs"
+	"wayne/src/backend/workers/webhook"
 )
 
 type KubeIngressController struct {
@@ -40,7 +41,7 @@ func (c *KubeIngressController) Prepare() {
 func (c *KubeIngressController) Create() {
 	ingressId := c.GetIntParamFromURL(":ingressId")
 	tplId := c.GetIntParamFromURL(":tplId")
-	var kubeIngress kapiv1beta1.Ingress
+	var kubeIngress kapiv1.Ingress
 	err := json.Unmarshal(c.Ctx.Input.RequestBody, &kubeIngress)
 	if err != nil {
 		logs.Error("Invalid server tpl %s", string(c.Ctx.Input.RequestBody))

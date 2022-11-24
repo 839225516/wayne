@@ -7,8 +7,8 @@ import (
 	apiextensions "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/common"
+	"wayne/src/backend/resources/dataselector"
 )
 
 func GetCRDPage(cli *clientset.Clientset, q *common.QueryParam) (*common.Page, error) {

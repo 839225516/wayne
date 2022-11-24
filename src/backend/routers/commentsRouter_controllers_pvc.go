@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const PersistentVolumeClaimController = "github.com/Qihoo360/wayne/src/backend/controllers/pvc:PersistentVolumeClaimController"
+    const PersistentVolumeClaimController = "wayne/src/backend/controllers/pvc:PersistentVolumeClaimController"
     beego.GlobalControllerRouter[PersistentVolumeClaimController] = append(
         beego.GlobalControllerRouter[PersistentVolumeClaimController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const PersistentVolumeClaimTplController = "github.com/Qihoo360/wayne/src/backend/controllers/pvc:PersistentVolumeClaimTplController"
+    const PersistentVolumeClaimTplController = "wayne/src/backend/controllers/pvc:PersistentVolumeClaimTplController"
     beego.GlobalControllerRouter[PersistentVolumeClaimTplController] = append(
         beego.GlobalControllerRouter[PersistentVolumeClaimTplController],
         beego.ControllerComments{

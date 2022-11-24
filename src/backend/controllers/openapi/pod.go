@@ -8,13 +8,13 @@ import (
 
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/pod"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/pod"
+	"wayne/src/backend/util/logs"
 )
 
 // An array of the pod.

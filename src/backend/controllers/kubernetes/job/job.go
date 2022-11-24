@@ -1,14 +1,14 @@
 package job
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/client/api"
+	"wayne/src/backend/client/api"
 	batchv1 "k8s.io/api/batch/v1"
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/resources/job"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/resources/job"
+	"wayne/src/backend/util/logs"
 )
 
 type KubeJobController struct {

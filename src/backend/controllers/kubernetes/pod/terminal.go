@@ -12,9 +12,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client"
+	"wayne/src/backend/util/hack"
+	"wayne/src/backend/util/logs"
 	"github.com/astaxie/beego"
 	"github.com/360yun/sockjs-go/sockjs"
 	"k8s.io/api/core/v1"

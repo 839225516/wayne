@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const DeploymentController = "github.com/Qihoo360/wayne/src/backend/controllers/deployment:DeploymentController"
+    const DeploymentController = "wayne/src/backend/controllers/deployment:DeploymentController"
     beego.GlobalControllerRouter[DeploymentController] = append(
         beego.GlobalControllerRouter[DeploymentController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
     
-    const DeploymentTplController = "github.com/Qihoo360/wayne/src/backend/controllers/deployment:DeploymentTplController"
+    const DeploymentTplController = "wayne/src/backend/controllers/deployment:DeploymentTplController"
     beego.GlobalControllerRouter[DeploymentTplController] = append(
         beego.GlobalControllerRouter[DeploymentTplController],
         beego.ControllerComments{

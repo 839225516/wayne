@@ -6,8 +6,8 @@ import (
 	"github.com/astaxie/beego/migration"
 	"github.com/astaxie/beego/orm"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
 )
 
 type NamespaceMetaData struct {

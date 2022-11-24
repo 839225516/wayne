@@ -8,9 +8,9 @@ import (
 	"k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
 )
 
 type APIController struct {

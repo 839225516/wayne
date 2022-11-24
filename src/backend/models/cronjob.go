@@ -10,7 +10,7 @@ import (
 
 	kapi "k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
+	"wayne/src/backend/util/hack"
 )
 
 const (

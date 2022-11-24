@@ -6,12 +6,12 @@ import (
 
 	"github.com/astaxie/beego"
 
-	"github.com/Qihoo360/wayne/src/backend/bus/message"
-	"github.com/Qihoo360/wayne/src/backend/bus/newbus"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/hookevent"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/bus/message"
+	"wayne/src/backend/bus/newbus"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/hookevent"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/util/logs"
 )
 
 type Request struct {

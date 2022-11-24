@@ -7,11 +7,11 @@ import (
 	metaV1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/event"
-	"github.com/Qihoo360/wayne/src/backend/resources/pod"
-	"github.com/Qihoo360/wayne/src/backend/util/maps"
+	"wayne/src/backend/client"
+	"wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/event"
+	"wayne/src/backend/resources/pod"
+	"wayne/src/backend/util/maps"
 )
 
 type DaemonSet struct {

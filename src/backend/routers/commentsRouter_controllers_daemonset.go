@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const DaemonSetController = "github.com/Qihoo360/wayne/src/backend/controllers/daemonset:DaemonSetController"
+    const DaemonSetController = "wayne/src/backend/controllers/daemonset:DaemonSetController"
     beego.GlobalControllerRouter[DaemonSetController] = append(
         beego.GlobalControllerRouter[DaemonSetController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const DaemonSetTplController = "github.com/Qihoo360/wayne/src/backend/controllers/daemonset:DaemonSetTplController"
+    const DaemonSetTplController = "wayne/src/backend/controllers/daemonset:DaemonSetTplController"
     beego.GlobalControllerRouter[DaemonSetTplController] = append(
         beego.GlobalControllerRouter[DaemonSetTplController],
         beego.ControllerComments{

@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/plugins/service/controller"
+	"wayne/src/backend/plugins/service/controller"
 	"github.com/astaxie/beego"
 )
 

@@ -1,12 +1,12 @@
 package common
 
 import (
-	kapiv1beta1 "k8s.io/api/extensions/v1beta1"
+	kapiv1 "k8s.io/api/networking/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
+	"wayne/src/backend/models"
 )
 
-func IngressPreDeploy(kubeIngress *kapiv1beta1.Ingress, cluster *models.Cluster, namespace *models.Namespace) {
+func IngressPreDeploy(kubeIngress *kapiv1.Ingress, cluster *models.Cluster, namespace *models.Namespace) {
 	preDefinedAnnotationMap := make(map[string]string)
 
 	annotationResult := make(map[string]string, 0)

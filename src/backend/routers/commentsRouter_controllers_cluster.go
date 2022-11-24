@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const ClusterController = "github.com/Qihoo360/wayne/src/backend/controllers/cluster:ClusterController"
+    const ClusterController = "wayne/src/backend/controllers/cluster:ClusterController"
     beego.GlobalControllerRouter[ClusterController] = append(
         beego.GlobalControllerRouter[ClusterController],
         beego.ControllerComments{

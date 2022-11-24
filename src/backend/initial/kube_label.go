@@ -3,7 +3,7 @@ package initial
 import (
 	"github.com/astaxie/beego"
 
-	"github.com/Qihoo360/wayne/src/backend/util"
+	"wayne/src/backend/util"
 )
 
 func InitKubeLabel() {

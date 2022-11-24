@@ -3,14 +3,14 @@ package cronjob
 import (
 	"strings"
 
-	batchv1beta1 "k8s.io/api/batch/v1beta1"
+	batchv1 "k8s.io/api/batch/v1"
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util"
 )
 
-func cronjobPreDeploy(kubeCronJob *batchv1beta1.CronJob, cronjob *models.Cronjob,
+func cronjobPreDeploy(kubeCronJob *batchv1.CronJob, cronjob *models.Cronjob,
 	cluster *models.Cluster, namespace *models.Namespace) {
 	// step 1  add envs
 	for i := 0; i < len(kubeCronJob.Spec.JobTemplate.Spec.Template.Spec.Containers); i++ {

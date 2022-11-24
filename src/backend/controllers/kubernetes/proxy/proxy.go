@@ -9,11 +9,11 @@ import (
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/resources/proxy"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/resources/proxy"
+	"wayne/src/backend/util/logs"
 )
 
 type KubeProxyController struct {

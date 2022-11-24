@@ -10,7 +10,7 @@ import (
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/util/logs"
 )
 
 func init() {

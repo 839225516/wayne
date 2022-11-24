@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const HPAController = "github.com/Qihoo360/wayne/src/backend/controllers/hpa:HPAController"
+    const HPAController = "wayne/src/backend/controllers/hpa:HPAController"
     beego.GlobalControllerRouter[HPAController] = append(
         beego.GlobalControllerRouter[HPAController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const HPATplController = "github.com/Qihoo360/wayne/src/backend/controllers/hpa:HPATplController"
+    const HPATplController = "wayne/src/backend/controllers/hpa:HPATplController"
     beego.GlobalControllerRouter[HPATplController] = append(
         beego.GlobalControllerRouter[HPATplController],
         beego.ControllerComments{

@@ -1,7 +1,7 @@
 package ingress
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/resources/dataselector"
 )
 
 // The code below allows to perform complex data section on []extensions.Ingress

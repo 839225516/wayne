@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeCRDController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/crd:KubeCRDController"
+    const KubeCRDController = "wayne/src/backend/controllers/kubernetes/crd:KubeCRDController"
     beego.GlobalControllerRouter[KubeCRDController] = append(
         beego.GlobalControllerRouter[KubeCRDController],
         beego.ControllerComments{
@@ -50,7 +50,7 @@ func init() {
             Params: nil,
         })
 
-    const KubeCustomCRDController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/crd:KubeCustomCRDController"
+    const KubeCustomCRDController = "wayne/src/backend/controllers/kubernetes/crd:KubeCustomCRDController"
     beego.GlobalControllerRouter[KubeCustomCRDController] = append(
         beego.GlobalControllerRouter[KubeCustomCRDController],
         beego.ControllerComments{

@@ -10,14 +10,14 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	v1 "k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/controllers/common"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	resdeployment "github.com/Qihoo360/wayne/src/backend/resources/deployment"
-	"github.com/Qihoo360/wayne/src/backend/resources/pod"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client"
+	"wayne/src/backend/controllers/common"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	resdeployment "wayne/src/backend/resources/deployment"
+	"wayne/src/backend/resources/pod"
+	"wayne/src/backend/util/hack"
+	"wayne/src/backend/util/logs"
 )
 
 type DeploymentInfo struct {
@@ -341,7 +341,7 @@ func (c *OpenAPIController) RestartDeployment() {
 	c.HandleResponse(nil)
 }
 
-// swagger:route GET /getversion_deployment deploy GetVersionDeploymentParam
+// swagger:route GET /get_version_deployment deploy GetVersionDeploymentParam
 //
 // 用于用户调用以实现查证deployment的label[version]的值
 //
@@ -354,51 +354,55 @@ func (c *OpenAPIController) RestartDeployment() {
 //       500: responseState
 // @router /get_version_deployment [get]
 func (c *OpenAPIController) GetVersionDeployment() {
-	param := GetVersionDeploymentParam{
-		Deployment: c.GetString("deployment"),
-		Namespace:  c.GetString("namespace"),
-		Cluster:    c.GetString("cluster"),
-	}
+    param := GetVersionDeploymentParam{
+        Deployment: c.GetString("deployment"),
+        Namespace:  c.GetString("namespace"),
+        Cluster:    c.GetString("cluster"),
+        }
 
-	// 验证权限和参数
-	if !c.CheckoutRoutePermission(GetDeploymentDetailAction) || !c.CheckDeploymentPermission(param.Deployment) || !c.CheckNamespacePermission(param.Namespace) {
-		return
-	}
-	if len(param.Namespace) == 0 {
-		c.AddErrorAndResponse(fmt.Sprintf("Invalid namespace parameter"), http.StatusBadRequest)
-		return
-	}
-	if len(param.Deployment) == 0 {
-		c.AddErrorAndResponse(fmt.Sprintf("Invalid deployment parameter"), http.StatusBadRequest)
-		return
-	}
+        // 验证权限和参数
+        if !c.CheckoutRoutePermission(GetDeploymentDetailAction) || !c.CheckDeploymentPermission(param.Deployment) || !c.CheckNamespacePermission(param.Namespace) {
+            return
+        }
+        if len(param.Namespace) == 0 {
+            c.AddErrorAndResponse(fmt.Sprintf("Invalid namespace parameter"), http.StatusBadRequest)
+            return
+        }
+        if len(param.Deployment) == 0 {
+            c.AddErrorAndResponse(fmt.Sprintf("Invalid deployment parameter"), http.StatusBadRequest)
+            return
+        }
 
-	cli, err := client.Client(param.Cluster)
-	if err != nil {
-		logs.Error("Failed to connect to k8s client", err)
-		c.AddErrorAndResponse(fmt.Sprintf("Failed to connect to k8s client on %s!", param.Cluster), http.StatusInternalServerError)
-		return
-	}
+        cli, err := client.Client(param.Cluster)
+        if err != nil {
+            logs.Error("Failed to connect to k8s client", err)
+            c.AddErrorAndResponse(fmt.Sprintf("Failed to connect to k8s client on %s!", param.Cluster), http.StatusInternalServerError)
+            return
+        }
 
-	//deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, ns.KubeNamespace)
-	deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, param.Namespace)
-	if err != nil {
-		logs.Error("Failed to get deployment from k8s client", err.Error())
-		c.AddErrorAndResponse(fmt.Sprintf("Failed to get deployment from k8s client on %s!", param.Cluster), http.StatusInternalServerError)
-		return
-	}
+        //deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, ns.KubeNamespace)
+        deployObj, err := resdeployment.GetDeployment(cli, param.Deployment, param.Namespace)
+        if err != nil {
+            logs.Error("Failed to get deployment from k8s client", err.Error())
+            c.AddErrorAndResponse(fmt.Sprintf("Failed to get deployment from k8s client on %s!", param.Cluster), http.StatusInternalServerError)
+            return
+        }
 
-	app := make(map[string]string)
-	app["name"] = param.Deployment
+        result := make(map[string]interface{})
+        app := make(map[string]string)
+        app["name"] = param.Deployment
 
-	value, ok := deployObj.Labels["version"]
-	if ok {
-		app["version"] = value
-	} else {
-		app["version"] = ""
-	}
+        value, ok := deployObj.Labels["version"]
+        if ok {
+            app["version"] = value
+        } else {
+            app["version"] = ""
+        }
 
-	c.HandleResponse(app)
+        result["code"] = http.StatusOK
+        result["data"] = app
+
+        c.HandleResponse(result)
 }
 
 // swagger:route GET /upgrade_deployment deploy UpgradeDeploymentParam

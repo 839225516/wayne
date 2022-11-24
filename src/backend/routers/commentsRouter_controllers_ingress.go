@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const IngressController = "github.com/Qihoo360/wayne/src/backend/controllers/ingress:IngressController"
+    const IngressController = "wayne/src/backend/controllers/ingress:IngressController"
     beego.GlobalControllerRouter[IngressController] = append(
         beego.GlobalControllerRouter[IngressController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const IngressTplController = "github.com/Qihoo360/wayne/src/backend/controllers/ingress:IngressTplController"
+    const IngressTplController = "wayne/src/backend/controllers/ingress:IngressTplController"
     beego.GlobalControllerRouter[IngressTplController] = append(
         beego.GlobalControllerRouter[IngressTplController],
         beego.ControllerComments{

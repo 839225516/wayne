@@ -3,11 +3,11 @@ package log
 import (
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/resources/log"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/resources/log"
+	"wayne/src/backend/util/hack"
+	"wayne/src/backend/util/logs"
 )
 
 type KubeLogController struct {

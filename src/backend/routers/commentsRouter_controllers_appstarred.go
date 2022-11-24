@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const AppStarredController = "github.com/Qihoo360/wayne/src/backend/controllers/appstarred:AppStarredController"
+    const AppStarredController = "wayne/src/backend/controllers/appstarred:AppStarredController"
     beego.GlobalControllerRouter[AppStarredController] = append(
         beego.GlobalControllerRouter[AppStarredController],
         beego.ControllerComments{

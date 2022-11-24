@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeEventController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/event:KubeEventController"
+    const KubeEventController = "wayne/src/backend/controllers/kubernetes/event:KubeEventController"
     beego.GlobalControllerRouter[KubeEventController] = append(
         beego.GlobalControllerRouter[KubeEventController],
         beego.ControllerComments{

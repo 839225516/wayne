@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubePersistentVolumeClaimController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/pvc:KubePersistentVolumeClaimController"
+    const KubePersistentVolumeClaimController = "wayne/src/backend/controllers/kubernetes/pvc:KubePersistentVolumeClaimController"
     beego.GlobalControllerRouter[KubePersistentVolumeClaimController] = append(
         beego.GlobalControllerRouter[KubePersistentVolumeClaimController],
         beego.ControllerComments{
@@ -17,7 +17,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    const RobinPersistentVolumeClaimController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/pvc:RobinPersistentVolumeClaimController"
+    const RobinPersistentVolumeClaimController = "wayne/src/backend/controllers/kubernetes/pvc:RobinPersistentVolumeClaimController"
     beego.GlobalControllerRouter[RobinPersistentVolumeClaimController] = append(
         beego.GlobalControllerRouter[RobinPersistentVolumeClaimController],
         beego.ControllerComments{

@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeIngressController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/ingress:KubeIngressController"
+    const KubeIngressController = "wayne/src/backend/controllers/kubernetes/ingress:KubeIngressController"
     beego.GlobalControllerRouter[KubeIngressController] = append(
         beego.GlobalControllerRouter[KubeIngressController],
         beego.ControllerComments{

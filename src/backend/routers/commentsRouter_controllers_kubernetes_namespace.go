@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeNamespaceController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/namespace:KubeNamespaceController"
+    const KubeNamespaceController = "wayne/src/backend/controllers/kubernetes/namespace:KubeNamespaceController"
     beego.GlobalControllerRouter[KubeNamespaceController] = append(
         beego.GlobalControllerRouter[KubeNamespaceController],
         beego.ControllerComments{

@@ -6,8 +6,8 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util"
 )
 
 func DeploymentPreDeploy(kubeDeployment *appsv1.Deployment, deploy *models.Deployment,

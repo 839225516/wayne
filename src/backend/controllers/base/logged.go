@@ -7,13 +7,13 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 
-	rsakey "github.com/Qihoo360/wayne/src/backend/apikey"
-	"github.com/Qihoo360/wayne/src/backend/bus"
-	"github.com/Qihoo360/wayne/src/backend/bus/message"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response/errors"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	rsakey "wayne/src/backend/apikey"
+	"wayne/src/backend/bus"
+	"wayne/src/backend/bus/message"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response/errors"
+	"wayne/src/backend/util/hack"
+	"wayne/src/backend/util/logs"
 )
 
 var (

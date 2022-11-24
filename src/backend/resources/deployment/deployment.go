@@ -12,13 +12,13 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	erroresult "github.com/Qihoo360/wayne/src/backend/models/response/errors"
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/event"
-	"github.com/Qihoo360/wayne/src/backend/resources/pod"
-	"github.com/Qihoo360/wayne/src/backend/util/maps"
+	"wayne/src/backend/client"
+	"wayne/src/backend/client/api"
+	erroresult "wayne/src/backend/models/response/errors"
+	"wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/event"
+	"wayne/src/backend/resources/pod"
+	"wayne/src/backend/util/maps"
 )
 
 type Deployment struct {

@@ -11,8 +11,8 @@ import (
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/Qihoo360/wayne/src/backend/database/initial"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/database/initial"
+	"wayne/src/backend/util/logs"
 )
 
 const DbDriverName = "mysql"

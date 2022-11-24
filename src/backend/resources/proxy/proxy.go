@@ -5,10 +5,10 @@ import (
 
 	"k8s.io/apimachinery/pkg/util/json"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/client"
+	"wayne/src/backend/common"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/resources/dataselector"
 )
 
 func GetPage(kubeClient client.ResourceHandler, kind string, namespace string, q *common.QueryParam) (*common.Page, error) {

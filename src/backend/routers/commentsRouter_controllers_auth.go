@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const AuthController = "github.com/Qihoo360/wayne/src/backend/controllers/auth:AuthController"
+    const AuthController = "wayne/src/backend/controllers/auth:AuthController"
     beego.GlobalControllerRouter[AuthController] = append(
         beego.GlobalControllerRouter[AuthController],
         beego.ControllerComments{

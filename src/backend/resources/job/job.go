@@ -11,13 +11,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/common"
-	resourcescommon "github.com/Qihoo360/wayne/src/backend/resources/common"
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
-	"github.com/Qihoo360/wayne/src/backend/resources/event"
-	"github.com/Qihoo360/wayne/src/backend/resources/pod"
+	"wayne/src/backend/client"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/common"
+	resourcescommon "wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/resources/event"
+	"wayne/src/backend/resources/pod"
 )
 
 func GetRelatedJobByCronJob(kubeClient client.ResourceHandler, namespace, cronJob string, q *common.QueryParam) (*common.Page, error) {
@@ -59,7 +59,7 @@ func pageResult(relateJob []*batchv1.Job, q *common.QueryParam) *common.Page {
 }
 
 func GetJobsByCronjobName(cli *kubernetes.Clientset, namespace, cronjobName string) ([]batchv1.Job, error) {
-	cronjob, err := cli.BatchV2alpha1().CronJobs(namespace).Get(context.TODO(), cronjobName, metaV1.GetOptions{})
+	cronjob, err := cli.BatchV1().CronJobs(namespace).Get(context.TODO(), cronjobName, metaV1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func GetJobsByCronjobName(cli *kubernetes.Clientset, namespace, cronjobName stri
 
 func GetPodsEvent(cli *kubernetes.Clientset, indexer *client.CacheFactory, namespace, jobName, cronjobName string) (resourcescommon.PodInfo, error) {
 	podInfo := resourcescommon.PodInfo{}
-	cronjob, err := cli.BatchV2alpha1().CronJobs(namespace).Get(context.TODO(), cronjobName, metaV1.GetOptions{})
+	cronjob, err := cli.BatchV1().CronJobs(namespace).Get(context.TODO(), cronjobName, metaV1.GetOptions{})
 	if err != nil {
 		return podInfo, err
 	}

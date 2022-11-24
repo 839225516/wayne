@@ -5,10 +5,10 @@ import (
 
 	"k8s.io/apimachinery/pkg/util/wait"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
+	"wayne/src/backend/client"
 )
 
 func InitClient() {
-	// 定期更新client
+	// 定期更新client, 5s执行一次 client.BuildApiserverClient
 	go wait.Forever(client.BuildApiserverClient, 5*time.Second)
 }

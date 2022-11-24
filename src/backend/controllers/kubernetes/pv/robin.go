@@ -11,9 +11,9 @@ import (
 	"github.com/astaxie/beego/httplib"
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/hack"
 )
 
 type RobinPersistentVolumeController struct {

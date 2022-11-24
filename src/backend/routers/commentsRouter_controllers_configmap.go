@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const ConfigMapController = "github.com/Qihoo360/wayne/src/backend/controllers/configmap:ConfigMapController"
+    const ConfigMapController = "wayne/src/backend/controllers/configmap:ConfigMapController"
     beego.GlobalControllerRouter[ConfigMapController] = append(
         beego.GlobalControllerRouter[ConfigMapController],
         beego.ControllerComments{
@@ -66,7 +66,7 @@ func init() {
             Params: nil,
         })
 
-    const ConfigMapTplController = "github.com/Qihoo360/wayne/src/backend/controllers/configmap:ConfigMapTplController"
+    const ConfigMapTplController = "wayne/src/backend/controllers/configmap:ConfigMapTplController"
     beego.GlobalControllerRouter[ConfigMapTplController] = append(
         beego.GlobalControllerRouter[ConfigMapTplController],
         beego.ControllerComments{

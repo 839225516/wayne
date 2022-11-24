@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	erroresult "github.com/Qihoo360/wayne/src/backend/models/response/errors"
-	"github.com/Qihoo360/wayne/src/backend/resources/event"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/common"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	erroresult "wayne/src/backend/models/response/errors"
+	"wayne/src/backend/resources/event"
+	"wayne/src/backend/util/logs"
 )
 
 type KubeEventController struct {

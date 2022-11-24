@@ -3,7 +3,7 @@ package hpa
 import (
 	autoscaling "k8s.io/api/autoscaling/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/common"
 )
 
 type HPA struct {

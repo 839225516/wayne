@@ -13,9 +13,9 @@ import (
 	clientcmdlatest "k8s.io/client-go/tools/clientcmd/api/latest"
 	clientcmdapiv1 "k8s.io/client-go/tools/clientcmd/api/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
-	"github.com/Qihoo360/wayne/src/backend/util/maps"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
+	"wayne/src/backend/util/maps"
 )
 
 const (
@@ -116,6 +116,7 @@ func shouldRemoveClusters(changedClusters []models.Cluster) {
 	})
 }
 
+// 检查集群是否改变
 func clusterChanged(clusters []models.Cluster) bool {
 	if maps.SyncMapLen(clusterManagerSets) != len(clusters) {
 		logs.Info("cluster length (%d) changed to (%d).", maps.SyncMapLen(clusterManagerSets), len(clusters))

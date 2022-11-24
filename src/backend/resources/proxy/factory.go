@@ -6,8 +6,8 @@ import (
 	"k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/resources/dataselector"
 )
 
 func getRealObjCellByKind(name api.ResourceName, object runtime.Object) (dataselector.DataCell, error) {

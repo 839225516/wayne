@@ -9,11 +9,11 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 
-	"github.com/Qihoo360/wayne/src/backend/bus"
-	"github.com/Qihoo360/wayne/src/backend/bus/message"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
+	"wayne/src/backend/bus"
+	"wayne/src/backend/bus/message"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/util/hack"
 )
 
 type APIKeyController struct {

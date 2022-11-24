@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeSecretController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/secret:KubeSecretController"
+    const KubeSecretController = "wayne/src/backend/controllers/kubernetes/secret:KubeSecretController"
     beego.GlobalControllerRouter[KubeSecretController] = append(
         beego.GlobalControllerRouter[KubeSecretController],
         beego.ControllerComments{

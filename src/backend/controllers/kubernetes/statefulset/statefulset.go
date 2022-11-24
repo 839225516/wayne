@@ -8,15 +8,15 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response/errors"
-	"github.com/Qihoo360/wayne/src/backend/resources/namespace"
-	"github.com/Qihoo360/wayne/src/backend/resources/statefulset"
-	"github.com/Qihoo360/wayne/src/backend/util"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response/errors"
+	"wayne/src/backend/resources/namespace"
+	"wayne/src/backend/resources/statefulset"
+	"wayne/src/backend/util"
+	"wayne/src/backend/util/hack"
+	"wayne/src/backend/util/logs"
 )
 
 type KubeStatefulsetController struct {

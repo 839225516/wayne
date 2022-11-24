@@ -1,8 +1,8 @@
 package bill
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
 )
 
 type InvoiceResponse struct {

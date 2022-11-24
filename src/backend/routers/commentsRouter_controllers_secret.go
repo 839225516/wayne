@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const SecretController = "github.com/Qihoo360/wayne/src/backend/controllers/secret:SecretController"
+    const SecretController = "wayne/src/backend/controllers/secret:SecretController"
     beego.GlobalControllerRouter[SecretController] = append(
         beego.GlobalControllerRouter[SecretController],
         beego.ControllerComments{
@@ -67,7 +67,7 @@ func init() {
         })
 
 
-    const SecretTplController = "github.com/Qihoo360/wayne/src/backend/controllers/secret:SecretTplController"
+    const SecretTplController = "wayne/src/backend/controllers/secret:SecretTplController"
     beego.GlobalControllerRouter[SecretTplController] = append(
         beego.GlobalControllerRouter[SecretTplController],
         beego.ControllerComments{

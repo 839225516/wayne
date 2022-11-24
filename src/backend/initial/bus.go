@@ -1,7 +1,7 @@
 package initial
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/bus/newbus"
+	"wayne/src/backend/bus/newbus"
 )
 
 func InitBus() {

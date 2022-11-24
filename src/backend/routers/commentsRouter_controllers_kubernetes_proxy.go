@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeProxyController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/proxy:KubeProxyController"
+    const KubeProxyController = "wayne/src/backend/controllers/kubernetes/proxy:KubeProxyController"
     beego.GlobalControllerRouter[KubeProxyController] = append(
         beego.GlobalControllerRouter[KubeProxyController],
         beego.ControllerComments{

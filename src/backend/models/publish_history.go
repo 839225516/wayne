@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/util/logs"
 )
 
 type publishHistoryModel struct{}

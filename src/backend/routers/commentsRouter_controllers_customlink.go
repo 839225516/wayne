@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const CustomLinkController = "github.com/Qihoo360/wayne/src/backend/controllers/customlink:CustomLinkController"
+    const CustomLinkController = "wayne/src/backend/controllers/customlink:CustomLinkController"
     beego.GlobalControllerRouter[CustomLinkController] = append(
         beego.GlobalControllerRouter[CustomLinkController],
         beego.ControllerComments{
@@ -58,7 +58,7 @@ func init() {
             Params: nil,
         })
 
-    const LinkTypeController = "github.com/Qihoo360/wayne/src/backend/controllers/customlink:LinkTypeController"
+    const LinkTypeController = "wayne/src/backend/controllers/customlink:LinkTypeController"
     beego.GlobalControllerRouter[LinkTypeController] = append(
         beego.GlobalControllerRouter[LinkTypeController],
         beego.ControllerComments{
@@ -102,7 +102,7 @@ func init() {
             Params: nil,
         })
 
-    const ShowLinkController = "github.com/Qihoo360/wayne/src/backend/controllers/customlink:ShowLinkController"
+    const ShowLinkController = "wayne/src/backend/controllers/customlink:ShowLinkController"
     beego.GlobalControllerRouter[ShowLinkController] = append(
         beego.GlobalControllerRouter[ShowLinkController],
         beego.ControllerComments{

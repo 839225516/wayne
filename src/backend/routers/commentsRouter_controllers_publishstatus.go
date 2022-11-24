@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const ConfigMapController = "github.com/Qihoo360/wayne/src/backend/controllers/publishstatus:PublishStatusController"
+    const ConfigMapController = "wayne/src/backend/controllers/publishstatus:PublishStatusController"
     beego.GlobalControllerRouter[ConfigMapController] = append(
         beego.GlobalControllerRouter[ConfigMapController],
         beego.ControllerComments{

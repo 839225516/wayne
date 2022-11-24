@@ -10,8 +10,8 @@ import (
 
 	goldap "gopkg.in/ldap.v2"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/models"
+	"wayne/src/backend/util/logs"
 )
 
 // ValidateLdapConf ...

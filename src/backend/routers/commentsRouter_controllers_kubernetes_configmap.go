@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeConfigMapController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/configmap:KubeConfigMapController"
+    const KubeConfigMapController = "wayne/src/backend/controllers/kubernetes/configmap:KubeConfigMapController"
     beego.GlobalControllerRouter[KubeConfigMapController] = append(
         beego.GlobalControllerRouter[KubeConfigMapController],
         beego.ControllerComments{

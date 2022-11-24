@@ -1,9 +1,10 @@
 package ingress
 
 import (
-	extensions "k8s.io/api/extensions/v1beta1"
-
-	"github.com/Qihoo360/wayne/src/backend/resources/common"
+	//"wayne/src/backend/resources/common"
+	"wayne/src/backend/resources/common"
+	//extensions "k8s.io/api/extensions/v1beta1"
+	"k8s.io/api/networking/v1"
 )
 
 type Ingress struct {
@@ -12,7 +13,7 @@ type Ingress struct {
 	Endpoints         []common.Endpoint `json:"endpoints"`
 }
 
-func getEndpoints(ingress *extensions.Ingress) []common.Endpoint {
+func getEndpoints(ingress *v1.Ingress) []common.Endpoint {
 	endpoints := make([]common.Endpoint, 0)
 	if len(ingress.Status.LoadBalancer.Ingress) > 0 {
 		for _, status := range ingress.Status.LoadBalancer.Ingress {
@@ -23,7 +24,7 @@ func getEndpoints(ingress *extensions.Ingress) []common.Endpoint {
 	return endpoints
 }
 
-func toIngress(ingress *extensions.Ingress) *Ingress {
+func toIngress(ingress *v1.Ingress) *Ingress {
 	modelIngress := &Ingress{
 		ObjectMeta: common.NewObjectMeta(ingress.ObjectMeta),
 		TypeMeta:   common.NewTypeMeta("ingress"),

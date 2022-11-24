@@ -3,7 +3,7 @@ package pod
 import (
 	"k8s.io/api/core/v1"
 
-	"github.com/Qihoo360/wayne/src/backend/resources/dataselector"
+	"wayne/src/backend/resources/dataselector"
 )
 
 // implements dataselector.DataCell

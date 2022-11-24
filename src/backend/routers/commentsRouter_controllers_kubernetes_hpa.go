@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeHPAController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/hpa:KubeHPAController"
+    const KubeHPAController = "wayne/src/backend/controllers/kubernetes/hpa:KubeHPAController"
     beego.GlobalControllerRouter[KubeHPAController] = append(
         beego.GlobalControllerRouter[KubeHPAController],
         beego.ControllerComments{

@@ -13,8 +13,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Qihoo360/wayne/src/backend/client/api"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/client/api"
+	"wayne/src/backend/util/logs"
 )
 
 type ResourceHandler interface {

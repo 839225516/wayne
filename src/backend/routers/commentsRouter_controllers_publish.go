@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const PublishController = "github.com/Qihoo360/wayne/src/backend/controllers/publish:PublishController"
+    const PublishController = "wayne/src/backend/controllers/publish:PublishController"
     beego.GlobalControllerRouter[PublishController] = append(
         beego.GlobalControllerRouter[PublishController],
         beego.ControllerComments{

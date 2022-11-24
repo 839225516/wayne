@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const AppUserController = "github.com/Qihoo360/wayne/src/backend/controllers/permission:AppUserController"
+    const AppUserController = "wayne/src/backend/controllers/permission:AppUserController"
     beego.GlobalControllerRouter[AppUserController] = append(
         beego.GlobalControllerRouter[AppUserController],
         beego.ControllerComments{
@@ -58,7 +58,7 @@ func init() {
             Params: nil,
         })
 
-    const GroupController = "github.com/Qihoo360/wayne/src/backend/controllers/permission:GroupController"
+    const GroupController = "wayne/src/backend/controllers/permission:GroupController"
     beego.GlobalControllerRouter[GroupController] = append(
         beego.GlobalControllerRouter[GroupController],
         beego.ControllerComments{
@@ -102,7 +102,7 @@ func init() {
             Params: nil,
         })
 
-    const NamespaceUserController = "github.com/Qihoo360/wayne/src/backend/controllers/permission:NamespaceUserController"
+    const NamespaceUserController = "wayne/src/backend/controllers/permission:NamespaceUserController"
     beego.GlobalControllerRouter[NamespaceUserController] = append(
         beego.GlobalControllerRouter[NamespaceUserController],
         beego.ControllerComments{
@@ -154,7 +154,7 @@ func init() {
             Params: nil,
         })
 
-    const PermissionController = "github.com/Qihoo360/wayne/src/backend/controllers/permission:PermissionController"
+    const PermissionController = "wayne/src/backend/controllers/permission:PermissionController"
     beego.GlobalControllerRouter[PermissionController] = append(
         beego.GlobalControllerRouter[PermissionController],
         beego.ControllerComments{
@@ -198,7 +198,7 @@ func init() {
             Params: nil,
         })
 
-    const UserController = "github.com/Qihoo360/wayne/src/backend/controllers/permission:UserController"
+    const UserController = "wayne/src/backend/controllers/permission:UserController"
     beego.GlobalControllerRouter[UserController] = append(
         beego.GlobalControllerRouter[UserController],
         beego.ControllerComments{

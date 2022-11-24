@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const BillController = "github.com/Qihoo360/wayne/src/backend/controllers/bill:BillController"
+    const BillController = "wayne/src/backend/controllers/bill:BillController"
     beego.GlobalControllerRouter[BillController] = append(
         beego.GlobalControllerRouter[BillController],
         beego.ControllerComments{

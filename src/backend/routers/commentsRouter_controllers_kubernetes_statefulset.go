@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeStatefulsetController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/statefulset:KubeStatefulsetController"
+    const KubeStatefulsetController = "wayne/src/backend/controllers/kubernetes/statefulset:KubeStatefulsetController"
     beego.GlobalControllerRouter[KubeStatefulsetController] = append(
         beego.GlobalControllerRouter[KubeStatefulsetController],
         beego.ControllerComments{

@@ -11,11 +11,11 @@ import (
 
 	"github.com/astaxie/beego/httplib"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/resources/pvc"
-	"github.com/Qihoo360/wayne/src/backend/util/des"
-	"github.com/Qihoo360/wayne/src/backend/util/hack"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	"wayne/src/backend/resources/pvc"
+	"wayne/src/backend/util/des"
+	"wayne/src/backend/util/hack"
 )
 
 type RobinPersistentVolumeClaimController struct {

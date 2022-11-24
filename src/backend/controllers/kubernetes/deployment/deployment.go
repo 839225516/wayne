@@ -8,17 +8,17 @@ import (
 
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/Qihoo360/wayne/src/backend/client"
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/controllers/common"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
-	"github.com/Qihoo360/wayne/src/backend/models/response/errors"
-	"github.com/Qihoo360/wayne/src/backend/resources/deployment"
-	"github.com/Qihoo360/wayne/src/backend/resources/namespace"
-	"github.com/Qihoo360/wayne/src/backend/util"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
-	"github.com/Qihoo360/wayne/src/backend/workers/webhook"
+	"wayne/src/backend/client"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/controllers/common"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
+	"wayne/src/backend/models/response/errors"
+	"wayne/src/backend/resources/deployment"
+	"wayne/src/backend/resources/namespace"
+	"wayne/src/backend/util"
+	"wayne/src/backend/util/logs"
+	"wayne/src/backend/workers/webhook"
 )
 
 type KubeDeploymentController struct {

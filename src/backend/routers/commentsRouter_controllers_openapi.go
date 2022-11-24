@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	const OpenAPIController = "github.com/Qihoo360/wayne/src/backend/controllers/openapi:OpenAPIController"
+	const OpenAPIController = "wayne/src/backend/controllers/openapi:OpenAPIController"
 	beego.GlobalControllerRouter[OpenAPIController] = append(
 		beego.GlobalControllerRouter[OpenAPIController],
 		beego.ControllerComments{

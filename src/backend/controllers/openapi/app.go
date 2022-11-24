@@ -3,8 +3,8 @@ package openapi
 import (
 	"net/http"
 
-	"github.com/Qihoo360/wayne/src/backend/models"
-	"github.com/Qihoo360/wayne/src/backend/models/response"
+	"wayne/src/backend/models"
+	"wayne/src/backend/models/response"
 )
 
 // resource info include deploys.

@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const WebHookController = "github.com/Qihoo360/wayne/src/backend/controllers/webhook:WebHookController"
+    const WebHookController = "wayne/src/backend/controllers/webhook:WebHookController"
     beego.GlobalControllerRouter[WebHookController] = append(
         beego.GlobalControllerRouter[WebHookController],
         beego.ControllerComments{

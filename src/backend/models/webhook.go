@@ -6,7 +6,7 @@ import (
 
 	"github.com/astaxie/beego/orm"
 
-	"github.com/Qihoo360/wayne/src/backend/models/hookevent"
+	"wayne/src/backend/models/hookevent"
 )
 
 type WebHookScope int64

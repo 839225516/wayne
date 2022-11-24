@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const KubeCronjobController = "github.com/Qihoo360/wayne/src/backend/controllers/kubernetes/cronjob:KubeCronjobController"
+    const KubeCronjobController = "wayne/src/backend/controllers/kubernetes/cronjob:KubeCronjobController"
     beego.GlobalControllerRouter[KubeCronjobController] = append(
         beego.GlobalControllerRouter[KubeCronjobController],
         beego.ControllerComments{

@@ -1,6 +1,6 @@
 package slice
 
-import "github.com/Qihoo360/wayne/src/backend/util/snaker"
+import "wayne/src/backend/util/snaker"
 
 func StrSliceContains(ss []string, s string) bool {
 	for _, v := range ss {

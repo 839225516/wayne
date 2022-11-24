@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const BaseConfigController= "github.com/Qihoo360/wayne/src/backend/controllers/config:BaseConfigController"
+    const BaseConfigController= "wayne/src/backend/controllers/config:BaseConfigController"
     beego.GlobalControllerRouter[BaseConfigController] = append(
         beego.GlobalControllerRouter[BaseConfigController],
         beego.ControllerComments{
@@ -17,7 +17,7 @@ func init() {
             Filters:          nil,
             Params:           nil,
         })
-    const ConfigController="github.com/Qihoo360/wayne/src/backend/controllers/config:ConfigController"
+    const ConfigController="wayne/src/backend/controllers/config:ConfigController"
     beego.GlobalControllerRouter[ConfigController] = append(beego.GlobalControllerRouter[ConfigController],
         beego.ControllerComments{
             Method: "List",

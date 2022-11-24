@@ -1,12 +1,12 @@
 package client
 
 import (
-	"github.com/Qihoo360/wayne/src/backend/client/api"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	appsv1 "k8s.io/client-go/listers/apps/v1"
 	autoscalingv1 "k8s.io/client-go/listers/autoscaling/v1"
 	"k8s.io/client-go/listers/core/v1"
+	"wayne/src/backend/client/api"
 )
 
 type CacheFactory struct {

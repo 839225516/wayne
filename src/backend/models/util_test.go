@@ -6,8 +6,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/Qihoo360/wayne/src/backend/common"
-	"github.com/Qihoo360/wayne/src/backend/models"
+	"wayne/src/backend/common"
+	"wayne/src/backend/models"
 )
 
 func TestGetAll(t *testing.T) {

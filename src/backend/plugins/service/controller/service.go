@@ -3,10 +3,10 @@ package controller
 import (
 	"encoding/json"
 
-	"github.com/Qihoo360/wayne/src/backend/controllers/base"
-	"github.com/Qihoo360/wayne/src/backend/models"
-	svcmodel "github.com/Qihoo360/wayne/src/backend/plugins/service/models"
-	"github.com/Qihoo360/wayne/src/backend/util/logs"
+	"wayne/src/backend/controllers/base"
+	"wayne/src/backend/models"
+	svcmodel "wayne/src/backend/plugins/service/models"
+	"wayne/src/backend/util/logs"
 )
 
 type ServiceController struct {

@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-    const NamespaceController = "github.com/Qihoo360/wayne/src/backend/controllers/namespace:NamespaceController"
+    const NamespaceController = "wayne/src/backend/controllers/namespace:NamespaceController"
     beego.GlobalControllerRouter[NamespaceController] = append(
         beego.GlobalControllerRouter[NamespaceController],
         beego.ControllerComments{
@@ -81,7 +81,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["github.com/Qihoo360/wayne/src/backend/controllers/namespace:NamespaceController"] = append(beego.GlobalControllerRouter["github.com/Qihoo360/wayne/src/backend/controllers/namespace:NamespaceController"],
+    beego.GlobalControllerRouter["wayne/src/backend/controllers/namespace:NamespaceController"] = append(beego.GlobalControllerRouter["wayne/src/backend/controllers/namespace:NamespaceController"],
         beego.ControllerComments{
             Method: "GetNames",
             Router: `/names`,
